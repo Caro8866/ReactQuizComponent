@@ -2,6 +2,7 @@ import styles from "./Quiz.module.css";
 import { useState } from "react";
 import PropTypes from "prop-types";
 import Timer from "../Timer/Timer";
+import MultipleChoice from "../MultipleChoice/MultipleChoice";
 
 const resultInitState = {
   score: 0,
@@ -17,7 +18,7 @@ function Quiz({ questions }) {
   const [showResult, setShowResult] = useState(false);
   const [displayTimer, setDisplayTimer] = useState(true);
 
-  const { question, choices, correctAnswer } = questions[currentQuestion];
+  const { question, choices, correctAnswer, type } = questions[currentQuestion];
 
   const selectAnswer = (answer, index) => {
     setSelectedAnswerIndex(index);
@@ -87,16 +88,7 @@ function Quiz({ questions }) {
           <header className={styles.questionNum}>
             <span className={styles.currentQuestionNum}>{currentQuestion + 1}</span>/<span className={styles.totalQuestionsNum}>{questions.length}</span>
           </header>
-          <section>
-            <h2 className={styles.questionText}>{question}</h2>
-            <ul className={styles.options}>
-              {choices.map((answer, index) => (
-                <li onClick={() => selectAnswer(answer, index)} key={answer} className={selectedAnswerIndex === index ? styles.selectedAnswer : null}>
-                  {answer}
-                </li>
-              ))}
-            </ul>
-          </section>
+          <MultipleChoice choices={choices} question={question} selectAnswer={selectAnswer} selectedAnswerIndex={selectedAnswerIndex} />
           <footer className={styles.quizFooter}>
             <button
               onClick={() => {
@@ -144,6 +136,7 @@ Quiz.propTypes = {
       question: PropTypes.string.isRequired,
       choices: PropTypes.arrayOf(PropTypes.string).isRequired,
       correctAnswer: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
     })
   ).isRequired,
 };

@@ -23,28 +23,6 @@
   font-size: var(--type-body-big);
 }
 
-.questionText {
-  color: var(--secondary-dark);
-  font-size: var(--type-body-title);
-}
-
-.options {
-  margin: 3rem 1.5rem;
-}
-
-.options li {
-  background-color: var(--primary-dark);
-  padding: 1rem 1.5rem;
-  font-size: var(--type-body-big);
-  border-radius: 7px;
-  cursor: pointer;
-  margin-block: 0.8rem;
-}
-
-.selectedAnswer {
-  background-color: var(--accent-teal) !important;
-  color: var(--primary-light);
-}
 .quizFooter {
   display: flex;
   justify-content: flex-end;
