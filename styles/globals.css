@@ -1,0 +1,95 @@
+@import url("./reset.css");
+/* Lazzer Font Import */
+@font-face {
+  font-family: "Lazzer";
+  font-style: normal;
+  src: local("Lazzer Heavy"), url("./fonts/Lazzer-Heavy.ttf") format("truetype");
+}
+
+:root {
+  /* Main colours */
+  --primary-light: #fffffc;
+  --primary-dark: #e2e6e7;
+  --secondary-light: #424c59;
+  --secondary-dark: #101419;
+
+  /* Accent colours */
+  --accent-coral: #ff6f61;
+  --accent-teal: #43b5bf;
+
+  /* Typography */
+  --type-isolated-heading: 2.8rem;
+  --type-primary-heading: 2.6rem;
+  --type-secondary-heading: 1.875rem;
+  --type-body-title: 1.375rem;
+  --type-cta: 0.8rem;
+  --type-highlight: 0.75rem;
+  --type-quotes: 0.7rem;
+  --type-body: 0.8rem;
+  --type-body-small: 0.625rem;
+  --type-label: 0.75rem;
+
+  /* font-family */
+  --ff-main: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --ff-display: "Lazzer", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--primary-100);
+  overflow-x: hidden;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 1em;
+  font-family: var(--ff-main);
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+p {
+  line-height: 1.4;
+  font-weight: 500;
+}
+h1,
+h2 {
+  line-height: 1.2;
+}
+h3,
+h4 {
+  line-height: 1.3;
+}
+
+@media only screen and (min-width: 1200px) {
+  :root {
+    /* Typography */
+    --type-isolated-heading: 3.75rem;
+    --type-primary-heading: 3.5rem;
+    --type-secondary-heading: 2.5rem;
+    --type-body-title: 2.5rem;
+    --type-cta: 1rem;
+    --type-highlight: 0.9rem;
+    --type-quotes: 0.9rem;
+    --type-body: 1rem;
+    --type-body-small: 0.75rem;
+    --type-label: 0.875rem;
+  }
+  html,
+  body {
+    font-size: 1em;
+  }
+}
