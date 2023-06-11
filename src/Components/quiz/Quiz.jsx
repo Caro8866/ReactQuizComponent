@@ -2,10 +2,18 @@ import styles from "./Quiz.module.css";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
+const resultInitState = {
+  score: 0,
+  correctAnswers: 0,
+  wrongAnswers: 0,
+};
+
 function Quiz({ questions }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
   const [answer, setAnswer] = useState(null);
+  const [result, setResult] = useState(resultInitState);
+  const [showResult, setShowResult] = useState(false);
 
   const { question, choices, correctAnswer } = questions[currentQuestion];
 
@@ -15,27 +23,79 @@ function Quiz({ questions }) {
   };
 
   const onNextQuestionClick = () => {
-    selectedAnswerIndex(null);
+    setSelectedAnswerIndex(null);
+    setResult((previousResult) => {
+      const scoreChange = answer ? 10 : -5;
+      const correctChange = answer ? 1 : 0;
+      const incorrectChange = answer ? 0 : 1;
+      return {
+        score: previousResult.score + scoreChange,
+        correctAnswers: previousResult.correctAnswers + correctChange,
+        wrongAnswers: previousResult.wrongAnswers + incorrectChange,
+      };
+    });
+    if (currentQuestion !== questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+    } else {
+      setCurrentQuestion(0);
+      setShowResult(true);
+    }
+  };
+
+  const restartQuiz = () => {
+    setResult(resultInitState);
+    setShowResult(false);
   };
 
   return (
     <div className={styles.quizcontainer}>
-      <header className={styles.questionNum}>
-        <span className={styles.currentQuestionNum}>{currentQuestion + 1}</span>/<span className={styles.totalQuestionsNum}>{questions.length}</span>
-      </header>
-      <h2 className={styles.questionText}>{question}</h2>
-      <ul className={styles.options}>
-        {choices.map((answer, index) => (
-          <li onClick={() => selectAnswer(answer, index)} key={answer} className={selectedAnswerIndex === index ? styles.selectedAnswer : null}>
-            {answer}
-          </li>
-        ))}
-      </ul>
-      <footer className={styles.quizFooter}>
-        <button onClick={onNextQuestionClick} disabled={selectedAnswerIndex === null}>
-          {currentQuestion === questions.length - 1 ? "Finished!" : "Next Question"}
-        </button>
-      </footer>
+      {!showResult ? (
+        <>
+          <header className={styles.questionNum}>
+            <span className={styles.currentQuestionNum}>{currentQuestion + 1}</span>/<span className={styles.totalQuestionsNum}>{questions.length}</span>
+          </header>
+          <section>
+            <h2 className={styles.questionText}>{question}</h2>
+            <ul className={styles.options}>
+              {choices.map((answer, index) => (
+                <li onClick={() => selectAnswer(answer, index)} key={answer} className={selectedAnswerIndex === index ? styles.selectedAnswer : null}>
+                  {answer}
+                </li>
+              ))}
+            </ul>
+          </section>
+          <footer className={styles.quizFooter}>
+            <button onClick={onNextQuestionClick} disabled={selectedAnswerIndex === null}>
+              {currentQuestion === questions.length - 1 ? "Finish!" : "Next Question..."}
+            </button>
+          </footer>
+        </>
+      ) : (
+        <div className={styles.result}>
+          <header>
+            <h1>
+              Here are your<span> results</span>!
+            </h1>
+          </header>
+          <section>
+            <p>
+              You answered <span>{questions.length}</span> questions!
+            </p>
+            <p>
+              Your total score is <span>{result.score}</span> points
+            </p>
+            <p>
+              You answered <span>{result.correctAnswers}</span> correctly!
+            </p>
+            <p>
+              You answered <span>{result.wrongAnswers}</span> incorrectly!
+            </p>
+          </section>
+          <footer className={styles.quizFooter}>
+            <button onClick={restartQuiz}>Try again!</button>
+          </footer>
+        </div>
+      )}
     </div>
   );
 }
