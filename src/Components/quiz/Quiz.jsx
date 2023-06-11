@@ -48,7 +48,7 @@ function Quiz({ questions }) {
   };
 
   return (
-    <div className={styles.quizcontainer}>
+    <div className={styles.quizContainer}>
       {!showResult ? (
         <>
           <header className={styles.questionNum}>

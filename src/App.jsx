@@ -1,4 +1,4 @@
-import Quiz from "./Components/quiz/Quiz";
+import Quiz from "./Components/Quiz/Quiz";
 import { jsonData } from "./data";
 function App() {
   return (
