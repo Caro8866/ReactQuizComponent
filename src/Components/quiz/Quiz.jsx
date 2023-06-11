@@ -21,12 +21,8 @@ function Quiz({ questions }) {
 
   const selectAnswer = (answer, index) => {
     setSelectedAnswerIndex(index);
-    setAnswer(answer === correctAnswer ? true : false);
-  };
-
-  const onNextQuestionClick = (finalAnswer) => {
-    setSelectedAnswerIndex(null);
-    setDisplayTimer(false);
+    const finalAnswer = answer === correctAnswer;
+    setAnswer(finalAnswer);
     setResult((previousResult) => {
       const scoreChange = finalAnswer ? 10 : -5;
       const correctChange = finalAnswer ? 1 : 0;
@@ -37,6 +33,30 @@ function Quiz({ questions }) {
         wrongAnswers: previousResult.wrongAnswers + incorrectChange,
       };
     });
+  };
+
+  const onNextQuestionClick = (finalAnswer) => {
+    setSelectedAnswerIndex(null);
+    setDisplayTimer(false);
+    if (!finalAnswer) {
+      setAnswer(false);
+    }
+    if (finalAnswer) {
+      setResult((previousResult) => {
+        return {
+          ...previousResult,
+          score: previousResult.score + 10,
+          correctAnswers: previousResult.correctAnswers + 1,
+        };
+      });
+    } else {
+      setResult((previousResult) => {
+        return {
+          ...previousResult,
+          wrongAnswers: previousResult.wrongAnswers + 1,
+        };
+      });
+    }
     if (currentQuestion !== questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
