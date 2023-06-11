@@ -15,6 +15,7 @@ function Quiz({ questions }) {
   const [answer, setAnswer] = useState(null);
   const [result, setResult] = useState(resultInitState);
   const [showResult, setShowResult] = useState(false);
+  const [displayTimer, setDisplayTimer] = useState(true);
 
   const { question, choices, correctAnswer } = questions[currentQuestion];
 
@@ -23,12 +24,13 @@ function Quiz({ questions }) {
     setAnswer(answer === correctAnswer ? true : false);
   };
 
-  const onNextQuestionClick = () => {
+  const onNextQuestionClick = (finalAnswer) => {
     setSelectedAnswerIndex(null);
+    setDisplayTimer(false);
     setResult((previousResult) => {
-      const scoreChange = answer ? 10 : -5;
-      const correctChange = answer ? 1 : 0;
-      const incorrectChange = answer ? 0 : 1;
+      const scoreChange = finalAnswer ? 10 : -5;
+      const correctChange = finalAnswer ? 1 : 0;
+      const incorrectChange = finalAnswer ? 0 : 1;
       return {
         score: previousResult.score + scoreChange,
         correctAnswers: previousResult.correctAnswers + correctChange,
@@ -41,6 +43,10 @@ function Quiz({ questions }) {
       setCurrentQuestion(0);
       setShowResult(true);
     }
+
+    setTimeout(() => {
+      setDisplayTimer(true);
+    });
   };
 
   const restartQuiz = () => {
@@ -49,14 +55,15 @@ function Quiz({ questions }) {
   };
 
   const handleTimeOut = () => {
-    alert("time is up!");
+    setAnswer(false);
+    onNextQuestionClick(false);
   };
 
   return (
     <div className={styles.quizContainer}>
       {!showResult ? (
         <>
-          <Timer duration={10} onTimeUp={handleTimeOut} />
+          {displayTimer && <Timer duration={3} onTimeUp={handleTimeOut} />}
           <header className={styles.questionNum}>
             <span className={styles.currentQuestionNum}>{currentQuestion + 1}</span>/<span className={styles.totalQuestionsNum}>{questions.length}</span>
           </header>
@@ -71,7 +78,12 @@ function Quiz({ questions }) {
             </ul>
           </section>
           <footer className={styles.quizFooter}>
-            <button onClick={onNextQuestionClick} disabled={selectedAnswerIndex === null}>
+            <button
+              onClick={() => {
+                onNextQuestionClick(answer);
+              }}
+              disabled={selectedAnswerIndex === null}
+            >
               {currentQuestion === questions.length - 1 ? "Finish!" : "Next Question..."}
             </button>
           </footer>
