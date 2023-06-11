@@ -1,4 +1,5 @@
 .quizContainer {
+  position: relative;
   background-color: rgba(238, 242, 243, 0.409);
   width: 600px;
   border-radius: 7px;
@@ -6,6 +7,7 @@
   padding: 3rem 2rem;
   display: flex;
   flex-flow: nowrap column;
+  overflow: hidden;
 }
 .questionNum {
   font-size: var(--type-secondary-heading);

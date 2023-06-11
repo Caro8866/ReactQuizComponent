@@ -1,0 +1,15 @@
+.timerContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.progressBar {
+  height: 5px;
+  width: 20%;
+  background-color: var(--accent-coral);
+  box-shadow: tomato 0px 0px 10px;
+  transition-duration: 1s;
+  transition-timing-function: linear;
+}

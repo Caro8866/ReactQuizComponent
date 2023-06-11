@@ -1,6 +1,7 @@
 import styles from "./Quiz.module.css";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import Timer from "../Timer/Timer";
 
 const resultInitState = {
   score: 0,
@@ -51,6 +52,7 @@ function Quiz({ questions }) {
     <div className={styles.quizContainer}>
       {!showResult ? (
         <>
+          <Timer duration={10} />
           <header className={styles.questionNum}>
             <span className={styles.currentQuestionNum}>{currentQuestion + 1}</span>/<span className={styles.totalQuestionsNum}>{questions.length}</span>
           </header>
