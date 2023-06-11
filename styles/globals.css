@@ -25,6 +25,7 @@
   --type-cta: 0.8rem;
   --type-highlight: 0.75rem;
   --type-quotes: 0.7rem;
+  --type-body-big: 1.2rem;
   --type-body: 0.8rem;
   --type-body-small: 0.625rem;
   --type-label: 0.75rem;
@@ -80,10 +81,11 @@ h4 {
     --type-isolated-heading: 3.75rem;
     --type-primary-heading: 3.5rem;
     --type-secondary-heading: 2.5rem;
-    --type-body-title: 2.5rem;
+    --type-body-title: 1.75rem;
     --type-cta: 1rem;
     --type-highlight: 0.9rem;
     --type-quotes: 0.9rem;
+    --type-body-big: 1.5rem;
     --type-body: 1rem;
     --type-body-small: 0.75rem;
     --type-label: 0.875rem;
