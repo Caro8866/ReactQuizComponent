@@ -1,4 +1,4 @@
-export const jsData = {
+export const jsonData = {
   questions: [
     { id: 0, question: "Muninn was a ____ bird who flew around the world to collect information for Odin. Fill in the blank.", type: "FIB", correctAnswer: "raven" },
     { id: 1, question: "Which of the following is not a primary colour", choices: ["Red", "Blue", "Green", "Yellow"], type: "MCQs", correctAnswer: "Green" },

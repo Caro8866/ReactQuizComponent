@@ -1,0 +1,8 @@
+.quizcontainer {
+  background-color: var(--primary-dark);
+  display: flex;
+  flex-flow: nowrap column;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 600px;
+}

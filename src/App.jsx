@@ -1,8 +1,9 @@
-import Quiz from "./Components/Quiz";
+import Quiz from "./Components/quiz/Quiz";
+import { jsonData } from "./data";
 function App() {
   return (
-    <div>
-      <Quiz />
+    <div className="container">
+      <Quiz questions={jsonData.questions} />
     </div>
   );
 }

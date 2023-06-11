@@ -1,6 +1,7 @@
+import styles from "./Quiz.module.css";
 function Quiz() {
   return (
-    <div className="quiz-container">
+    <div className={styles.quizcontainer}>
       <p>Quiz</p>
     </div>
   );
