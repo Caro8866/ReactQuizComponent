@@ -1,8 +1,64 @@
 .quizcontainer {
-  background-color: var(--primary-dark);
+  background-color: rgba(238, 242, 243, 0.409);
+  width: 600px;
+  border-radius: 7px;
+  margin: 2.5rem auto;
+  padding: 3rem 2rem;
   display: flex;
   flex-flow: nowrap column;
-  margin: 0 auto;
-  padding: 0 2rem;
-  height: 600px;
+}
+.questionNum {
+  font-size: var(--type-secondary-heading);
+  color: rgb(202, 201, 201);
+  margin-bottom: 20px;
+}
+.currentQuestionNum {
+  color: var(--accent-teal);
+  font-size: var(--type-secondary-heading);
+}
+.totalQuestionsNum {
+  color: rgb(202, 201, 201);
+  font-size: var(--type-body-big);
+}
+
+.questionText {
+  color: var(--secondary-dark);
+  font-size: var(--type-body-title);
+}
+
+.options {
+  margin: 50px 20px;
+}
+
+.options li {
+  background-color: var(--primary-dark);
+  padding: 1rem 1.5rem;
+  font-size: var(--type-body-big);
+  border-radius: 7px;
+  cursor: pointer;
+  margin-block: 0.8rem;
+}
+
+.selectedAnswer {
+  background-color: var(--accent-teal) !important;
+  color: var(--primary-light);
+}
+.quizFooter {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.quizFooter button {
+  background-color: var(--accent-coral);
+  border: none;
+  border-radius: 8px;
+  color: var(--primary-light);
+  padding: 0.5rem 1rem;
+  font-size: var(--type-body-big);
+  cursor: pointer;
+}
+
+.quizFooter button:disabled {
+  background-color: var(--primary-dark);
+  cursor: not-allowed;
 }
