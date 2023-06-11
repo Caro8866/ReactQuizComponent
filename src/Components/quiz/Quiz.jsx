@@ -22,52 +22,31 @@ function Quiz({ questions }) {
 
   const selectAnswer = (answer, index) => {
     setSelectedAnswerIndex(index);
-    const finalAnswer = answer === correctAnswer;
-    setAnswer(finalAnswer);
+  };
+
+  const onNextQuestionClick = () => {
+    setDisplayTimer(false);
+
     setResult((previousResult) => {
-      const scoreChange = finalAnswer ? 10 : -5;
+      const finalAnswer = selectedAnswerIndex !== null && choices[selectedAnswerIndex] === correctAnswer;
+      const scoreChange = finalAnswer ? 10 : 0;
       const correctChange = finalAnswer ? 1 : 0;
       const incorrectChange = finalAnswer ? 0 : 1;
+
       return {
         score: previousResult.score + scoreChange,
         correctAnswers: previousResult.correctAnswers + correctChange,
         wrongAnswers: previousResult.wrongAnswers + incorrectChange,
       };
     });
-  };
 
-  const onNextQuestionClick = (finalAnswer) => {
-    setSelectedAnswerIndex(null);
-    setDisplayTimer(false);
-    if (!finalAnswer) {
-      setAnswer(false);
-    }
-    if (finalAnswer) {
-      setResult((previousResult) => {
-        return {
-          ...previousResult,
-          score: previousResult.score + 10,
-          correctAnswers: previousResult.correctAnswers + 1,
-        };
-      });
-    } else {
-      setResult((previousResult) => {
-        return {
-          ...previousResult,
-          wrongAnswers: previousResult.wrongAnswers + 1,
-        };
-      });
-    }
     if (currentQuestion !== questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
+      setSelectedAnswerIndex(null);
+      setDisplayTimer(true);
     } else {
-      setCurrentQuestion(0);
       setShowResult(true);
     }
-
-    setTimeout(() => {
-      setDisplayTimer(true);
-    });
   };
 
   const restartQuiz = () => {
