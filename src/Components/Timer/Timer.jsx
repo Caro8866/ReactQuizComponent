@@ -32,7 +32,7 @@ function Timer({ duration, onTimeUp }) {
         className={styles.progressBar}
         style={{
           width: `${progress}%`,
-          backgroundColor: `rgba(255, 111, 97, ${progress / 100}`,
+          backgroundColor: `rgba(255, 111, 97, ${progress / 100})`,
         }}
       ></div>
     </div>
