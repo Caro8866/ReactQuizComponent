@@ -43,7 +43,9 @@ function Quiz({ questions }) {
     if (currentQuestion !== questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedAnswerIndex(null);
-      setDisplayTimer(true);
+      setTimeout(() => {
+        setDisplayTimer(true);
+      }, 100); // Delay to allow the component to re-render before starting the timer
     } else {
       setShowResult(true);
     }
@@ -52,6 +54,11 @@ function Quiz({ questions }) {
   const restartQuiz = () => {
     setResult(resultInitState);
     setShowResult(false);
+    setSelectedAnswerIndex(null);
+    setCurrentQuestion(0);
+    setTimeout(() => {
+      setDisplayTimer(true);
+    }, 100); // Delay to allow the component to re-render before starting the timer
   };
 
   const handleTimeOut = () => {
@@ -67,7 +74,7 @@ function Quiz({ questions }) {
           <header className={styles.questionNum}>
             <span className={styles.currentQuestionNum}>{currentQuestion + 1}</span>/<span className={styles.totalQuestionsNum}>{questions.length}</span>
           </header>
-          <MultipleChoice choices={choices} question={question} selectAnswer={selectAnswer} selectedAnswerIndex={selectedAnswerIndex} />
+          {type === "MC" ? <MultipleChoice choices={choices} question={question} selectAnswer={selectAnswer} selectedAnswerIndex={selectedAnswerIndex} /> : null}
           <footer className={styles.quizFooter}>
             <button
               onClick={() => {
