@@ -1,7 +1,7 @@
 import styles from "./Timer.module.css";
 import { useEffect, useState, useRef } from "react";
 
-function Timer({ ...duration }) {
+function Timer({ duration, onTimeUp }) {
   const [counter, setCounter] = useState(0);
   const [progress, setProgress] = useState(0);
 
@@ -19,12 +19,22 @@ function Timer({ ...duration }) {
 
     if (counter === duration) {
       clearInterval(intervalRef.currentCount);
+
+      setTimeout(() => {
+        onTimeUp();
+      }, 1000);
     }
   }, [counter]);
 
   return (
     <div className={styles.timerContainer}>
-      <div className={styles.progressBar}></div>
+      <div
+        className={styles.progressBar}
+        style={{
+          width: `${progress}%`,
+          backgroundColor: `rgba(255, 111, 97, ${progress / 100}`,
+        }}
+      ></div>
     </div>
   );
 }

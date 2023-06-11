@@ -48,11 +48,15 @@ function Quiz({ questions }) {
     setShowResult(false);
   };
 
+  const handleTimeOut = () => {
+    alert("time is up!");
+  };
+
   return (
     <div className={styles.quizContainer}>
       {!showResult ? (
         <>
-          <Timer duration={10} />
+          <Timer duration={10} onTimeUp={handleTimeOut} />
           <header className={styles.questionNum}>
             <span className={styles.currentQuestionNum}>{currentQuestion + 1}</span>/<span className={styles.totalQuestionsNum}>{questions.length}</span>
           </header>
