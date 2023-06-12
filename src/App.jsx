@@ -30,12 +30,12 @@ function App() {
 
   return (
     <div className="container">
-      {/* Check if the data is available */}
-      {data.length > 0 ? (
-        // Render the Quiz component when the data has been fetched with the fetched questions
+      {/* Check if the data is fetched */}
+      {data.length ? (
+        // Render the Quiz component when the data has been fetched
         <Quiz questions={data} />
       ) : (
-        // Display a loading message if the data is not yet fetched
+        // Display a loading message if the data has not yet fetched
         <p>Loading...</p>
       )}
     </div>
