@@ -9,19 +9,50 @@
   flex-flow: nowrap column;
   overflow: hidden;
 }
-.questionNum {
+
+/* Header styling */
+
+.header {
   font-size: var(--type-secondary-heading);
   color: rgb(202, 201, 201);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0rem;
 }
+
 .currentQuestionNum {
   color: var(--accent-teal);
   font-size: var(--type-secondary-heading);
 }
+
 .totalQuestionsNum {
   color: rgb(202, 201, 201);
   font-size: var(--type-body-big);
 }
+
+.questionText {
+  color: var(--secondary-dark);
+  font-size: var(--type-body-title);
+  margin-top: 1rem;
+}
+
+/* Fill in the blank styling */
+
+.input {
+  border: 1px solid var(--primary-dark);
+  border-radius: 7px;
+  padding: 0.8rem 1.5rem;
+  font-size: var(--type-body-big);
+  margin-top: 2.5rem;
+  width: 50%;
+}
+
+.input:focus {
+  box-shadow: 0 0 10px var(--accent-teal);
+  outline-color: var(--accent-teal);
+  outline-width: 1px;
+  outline-style: solid;
+}
+
+/* Footer styling */
 
 .quizFooter {
   display: flex;
@@ -43,12 +74,15 @@
   cursor: not-allowed;
 }
 
+/* Result page styling */
+
 .result header {
   font-size: var(--type-secondary-heading);
   color: var(--secondary-dark);
   margin-bottom: 1.5rem;
   text-align: center;
 }
+
 .result header span {
   color: var(--accent-teal);
 }
@@ -62,6 +96,7 @@
   color: var(--secondary-light);
   margin-bottom: 2rem;
 }
+
 .result section span {
   color: var(--accent-teal);
   font-size: var(--type-secondary-heading);
