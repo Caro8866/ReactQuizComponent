@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
 import styles from "./MultipleChoice.module.css";
 
-function MultipleChoice({ choices, question, selectAnswer, selectedAnswerIndex }) {
+function MultipleChoice({ choices, selectAnswer, selectedAnswerIndex }) {
   return (
     <section>
-      <h2 className={styles.questionText}>{question}</h2>
       <ul className={styles.options}>
         {choices.map((answer, index) => (
           <li onClick={() => selectAnswer(answer, index)} key={answer} className={selectedAnswerIndex === index ? styles.selectedAnswer : null}>

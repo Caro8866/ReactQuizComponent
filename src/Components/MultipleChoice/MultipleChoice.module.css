@@ -1,10 +1,5 @@
-.questionText {
-  color: var(--secondary-dark);
-  font-size: var(--type-body-title);
-}
-
 .options {
-  margin: 3rem 1.5rem;
+  margin: 2rem 1.5rem;
 }
 
 .options li {
