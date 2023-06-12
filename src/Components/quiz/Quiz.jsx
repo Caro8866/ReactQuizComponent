@@ -46,7 +46,7 @@ function Quiz({ questions }) {
       } else if (type === "FITB") {
         scoreChange = answer ? 10 : 0;
         correctChange = answer ? 1 : 0;
-        incorrectChange = answer ? 0 : 1;
+        incorrectChange = answer === false ? 1 : 0; // Increment incorrect count only if the answer is false
       }
 
       return {
