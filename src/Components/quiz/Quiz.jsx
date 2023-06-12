@@ -1,9 +1,9 @@
-import styles from "./Quiz.module.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Timer from "../Timer/Timer";
 import MultipleChoice from "../MultipleChoice/MultipleChoice";
 import FillInTheBlank from "../FillInTheBlank/FillInTheBlank";
+import styles from "./Quiz.module.css";
 
 const resultInitState = {
   score: 0,
