@@ -22,10 +22,12 @@ function Quiz({ questions }) {
 
   const { question, choices, correctAnswer, type } = questions[currentQuestion];
 
+  // Callback function to handle the selection of an answer
   const selectAnswer = (answer, index) => {
     setSelectedAnswerIndex(index);
   };
 
+  // Callback function when the "Next Question" button is clicked
   const onNextQuestionClick = () => {
     setDisplayTimer(false);
 
@@ -36,6 +38,7 @@ function Quiz({ questions }) {
       let correctChange = 0;
       let incorrectChange = 0;
 
+      // Calculate score, correct answers, and wrong answers based on question type
       if (type === "MC") {
         scoreChange = finalAnswer ? 10 : 0;
         correctChange = finalAnswer ? 1 : 0;
@@ -53,6 +56,7 @@ function Quiz({ questions }) {
       };
     });
 
+    // If there are more questions, go to the next question
     if (currentQuestion !== questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedAnswerIndex(null);
@@ -62,37 +66,42 @@ function Quiz({ questions }) {
         setDisplayTimer(true);
       }, 100); // Delay to allow the component to re-render before starting the timer
     } else {
+      // Show the result if it is the last question
       setShowResult(true);
     }
   };
 
+  // Restart the quiz and reset all states
   const restartQuiz = () => {
     setResult(resultInitState);
     setShowResult(false);
     setSelectedAnswerIndex(null);
     setCurrentQuestion(0);
     setFITBAnswer(""); // Reset FITBAnswer to an empty string
-    setAnswer(null); // Reset answer to null
+    setAnswer(null); // Reset MC answer to null
     setTimeout(() => {
       setDisplayTimer(true);
     }, 100); // Delay to allow the component to re-render before starting the timer
   };
 
+  // Handle timer timeout event
   const handleTimeOut = () => {
     setAnswer(false);
     onNextQuestionClick(false);
   };
 
+  // Handle user change in the input field for FITB questions
   const handleFITBAnswerChange = (e) => {
     const userAnswer = e.target.value; // Get the user input
     setFITBAnswer(userAnswer);
     const lowercaseUserAnswer = userAnswer.toLowerCase(); // Convert the user input to lowercase
     const lowercaseCorrectAnswer = correctAnswer.toLowerCase(); // Convert the correct answer to lowercase
 
-    const isAnswerCorrect = lowercaseUserAnswer === lowercaseCorrectAnswer;
+    const isAnswerCorrect = lowercaseUserAnswer === lowercaseCorrectAnswer; // Compare user answer and correct answer
     setAnswer(isAnswerCorrect);
   };
 
+  // Display the appropriate answer component based on the question type
   const displayAnswers = () => {
     if (type === "MC") {
       return <MultipleChoice choices={choices} selectAnswer={selectAnswer} selectedAnswerIndex={selectedAnswerIndex} />;
