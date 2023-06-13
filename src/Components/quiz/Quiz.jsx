@@ -4,6 +4,7 @@ import Timer from "../Timer/Timer";
 import MultipleChoice from "../MultipleChoice/MultipleChoice";
 import FillInTheBlank from "../FillInTheBlank/FillInTheBlank";
 import styles from "./Quiz.module.css";
+import Result from "../Result/Result";
 
 const resultInitState = {
   score: 0,
@@ -132,30 +133,7 @@ function Quiz({ questions }) {
           </footer>
         </>
       ) : (
-        <div className={styles.result}>
-          <header>
-            <h1>
-              Here are your<span> results</span>!
-            </h1>
-          </header>
-          <section>
-            <p>
-              You answered <span>{questions.length}</span> questions!
-            </p>
-            <p>
-              Your total score is <span>{result.score}</span> points
-            </p>
-            <p>
-              You answered <span>{result.correctAnswers}</span> correctly!
-            </p>
-            <p>
-              You answered <span>{result.wrongAnswers}</span> incorrectly!
-            </p>
-          </section>
-          <footer className={styles.quizFooter}>
-            <button onClick={restartQuiz}>Try again!</button>
-          </footer>
-        </div>
+        <Result totalQuestions={questions.length} result={result} restartQuiz={restartQuiz} />
       )}
     </div>
   );

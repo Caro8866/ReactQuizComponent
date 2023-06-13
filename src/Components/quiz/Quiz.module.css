@@ -51,7 +51,6 @@
   outline-width: 1px;
   outline-style: solid;
 }
-
 /* Footer styling */
 
 .quizFooter {
@@ -72,32 +71,4 @@
 .quizFooter button:disabled {
   background-color: var(--primary-dark);
   cursor: not-allowed;
-}
-
-/* Result page styling */
-
-.result header {
-  font-size: var(--type-secondary-heading);
-  color: var(--secondary-dark);
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.result header span {
-  color: var(--accent-teal);
-}
-
-.result section {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  gap: 1rem;
-  font-size: var(--type-body-big);
-  color: var(--secondary-light);
-  margin-bottom: 2rem;
-}
-
-.result section span {
-  color: var(--accent-teal);
-  font-size: var(--type-secondary-heading);
 }
