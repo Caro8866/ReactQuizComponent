@@ -40,6 +40,8 @@
   padding: 0.5rem 1rem;
   font-size: var(--type-body-big);
   cursor: pointer;
+  margin: auto;
+  margin-bottom: 2rem;
 }
 
 .quizFooter button:disabled {
@@ -48,8 +50,17 @@
 }
 
 /* Result.module.css */
+.leaderboard {
+  border-top: 2px var(--accent-coral) solid;
+  padding-top: 1.5rem;
+}
+
+.h1 {
+  font-size: var(--type-secondary-heading);
+}
 
 .podium {
+  margin-top: 1rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   margin-bottom: 2rem;
@@ -117,6 +128,7 @@
 .leaderboardTable {
   width: 100%;
   border-collapse: collapse;
+  border: 1px var(--accent-coral) solid;
 }
 
 .leaderboardTable th,
@@ -125,8 +137,13 @@
   text-align: center;
 }
 
+.leaderboardTable td {
+  color: var(--secondary-light);
+}
+
 .leaderboardTable th {
-  background-color: #f2f2f2;
+  background-color: var(--accent-coral);
+  color: var(--primary-light);
 }
 
 .leaderboardTable td:first-child {
@@ -134,9 +151,9 @@
 }
 
 .leaderboardTable tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: var(--primary-dark);
 }
 
 .leaderboardTable tbody tr:hover {
-  background-color: #f5f5f5;
+  background-color: rgba(255, 111, 97, 0.4);
 }

@@ -14,7 +14,7 @@ function Result({ totalQuestions, result, restartQuiz }) {
 
   const fetchLeaderboard = async () => {
     try {
-      const { data, error } = await supabase.from("leaderboard").select("*").order("score", { ascending: false }).limit(10);
+      const { data, error } = await supabase.from("leaderboard").select("*").order("score", { ascending: false });
 
       if (error) {
         throw new Error(error.message);
@@ -22,7 +22,6 @@ function Result({ totalQuestions, result, restartQuiz }) {
 
       if (data) {
         setScores(data);
-        setShowLeaderboard(true);
       }
     } catch (error) {
       console.error("Error fetching leaderboard:", error);
@@ -31,12 +30,13 @@ function Result({ totalQuestions, result, restartQuiz }) {
 
   const saveUserScore = async () => {
     const score = {
-      name: userName,
+      username: userName,
       score: result.score,
     };
 
     try {
-      const { data, error } = await supabase.from("leaderboard").insert([{ username: score.name, score: score.score }]);
+      const { data, error } = await supabase.from("leaderboard").insert([score]);
+      setShowLeaderboard(true);
 
       if (error) {
         throw new Error(error.message);
@@ -45,7 +45,6 @@ function Result({ totalQuestions, result, restartQuiz }) {
       if (data) {
         const newScores = [...scores, score].sort((a, b) => b.score - a.score);
         setScores(newScores);
-        setShowLeaderboard(true);
       }
     } catch (error) {
       console.error("Error saving user score:", error);
@@ -77,13 +76,13 @@ function Result({ totalQuestions, result, restartQuiz }) {
         <button onClick={restartQuiz}>Try again!</button>
       </footer>
       <section>
-        <h1>Enter your name and save your score</h1>
+        <h1 className={styles.h1}>Enter your name and save your score</h1>
         <input type="text" placeholder="Your Name Goes Here!" value={userName} onChange={(e) => setUserName(e.target.value)} />
         <button onClick={saveUserScore}>Save Score</button>
       </section>
       {showLeaderboard && (
-        <section>
-          <h1>Leaderboard</h1>
+        <section className={styles.leaderboard}>
+          <h1 className={styles.h1}>Leaderboard</h1>
           <div className={styles.podium}>
             {scores.slice(0, 3).map((score, index) => (
               <div key={index} className={styles.podiumItem}>
